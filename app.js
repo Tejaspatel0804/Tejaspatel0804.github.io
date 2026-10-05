@@ -17,7 +17,7 @@ async function sha256(s){
 function unlock(){
   const p=$("password").value;
   // Demo password: change PASSWORD_HASH using the helper below before publishing.
-  if(p==="tejas"){
+  if(p==="9584"){
     sessionStorage.setItem("unlocked","1");
     showDashboard();
   }else $("loginError").textContent="Incorrect password.";
