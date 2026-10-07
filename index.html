@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>Tejas Reminder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <section id="lockScreen" class="card lock">
+    <div class="logo">TR</div>
+    <h1>Tejas Reminder</h1>
+    <p class="muted">Enter your password to continue.</p>
+    <input id="password" type="password" autocomplete="current-password" placeholder="Password">
+    <button id="unlock">Unlock</button>
+    <p id="loginError" class="error"></p>
+  </section>
+
+  <section id="dashboard" hidden>
+    <header>
+      <div>
+        <p class="eyebrow">24-HOUR REMINDER</p>
+        <h1>My Running Cycle</h1>
+      </div>
+      <button id="lock" class="secondary small">Lock</button>
+    </header>
+
+    <section class="card dialCard">
+      <div class="dial">
+        <svg viewBox="0 0 220 220" aria-hidden="true">
+          <circle class="track" cx="110" cy="110" r="92"></circle>
+          <circle id="progress" class="progress" cx="110" cy="110" r="92"></circle>
+        </svg>
+        <div class="dialText">
+          <strong id="remaining">24:00:00</strong>
+          <span>remaining</span>
+        </div>
+      </div>
+      <div class="next">
+        <span>Next reminder</span>
+        <strong id="nextTime">—</strong>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Schedule</h2>
+      <label>First running time
+        <input id="firstTime" type="datetime-local">
+      </label>
+      <label>Start offset (minutes)
+        <input id="offset" type="number" min="0" step="1" value="40">
+      </label>
+      <label>Cycle length (hours)
+        <input id="cycle" type="number" min="0.0167" step="0.5" value="24">
+      </label>
+      <button id="save">Save & Start</button>
+      <button id="reset" class="secondary">Reset schedule</button>
+      <div id="status" class="status"></div>
+    </section>
+
+    <section class="card">
+      <h2>How it works</h2>
+      <p class="muted">
+        Example: first time 5 Oct 2026 at 7:00 PM + 40 minutes =
+        first cycle point at 7:40 PM. The next point is one cycle later.
+      </p>
+      <p class="muted smallText">
+        This page keeps running even after refresh because the schedule is saved locally.
+        Browser notifications are optional and require permission.
+      </p>
+      <button id="notify" class="secondary">Enable browser notifications</button>
+    </section>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
