@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f8fc">
+<title>My Life Dashboard</title>
+<style>
+:root{--bg:#f6f7fb;--surface:#fff;--text:#202536;--muted:#778096;--line:#e9ecf3;--accent:#5578e8;--accent-soft:#edf1ff;--green:#239b72;--shadow:0 8px 28px rgba(31,45,80,.055)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer;border:0} .app{max-width:1180px;margin:auto;padding:28px 22px 48px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:30px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:14px;background:var(--accent);color:white;display:grid;place-items:center;font-weight:800;font-size:19px}.brand h1{font-size:18px;margin:0;letter-spacing:-.4px}.brand p{margin:1px 0 0;color:var(--muted);font-size:12px}.header-actions{display:flex;gap:9px}.icon-btn,.secondary{background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:10px 13px}.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:18px;margin-bottom:20px}.welcome,.time-card,.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.welcome{padding:27px 28px;position:relative;overflow:hidden}.eyebrow{color:var(--accent);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px}.welcome h2{font-size:clamp(25px,4vw,36px);letter-spacing:-1.2px;margin:8px 0 5px}.welcome p{color:var(--muted);margin:0}.quote{margin-top:22px;padding:12px 15px;border-radius:12px;background:#f8f9fd;color:#5e6880;font-size:13px}.time-card{padding:23px;display:flex;flex-direction:column;justify-content:center}.time-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}.clock{font-size:clamp(32px,5vw,44px);font-weight:700;letter-spacing:-1.5px;margin:4px 0}.date{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.card{padding:20px;min-width:0}.span-8{grid-column:span 8}.span-7{grid-column:span 7}.span-6{grid-column:span 6}.span-5{grid-column:span 5}.span-4{grid-column:span 4}.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.card h3{font-size:15px;margin:0;letter-spacing:-.2px}.muted{color:var(--muted);font-size:12px}.pill{background:var(--accent-soft);color:var(--accent);padding:5px 9px;border-radius:20px;font-size:11px;font-weight:700}.row{display:flex;gap:9px;align-items:center}.field{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:#fff;color:var(--text);outline:none}.field:focus{border-color:#9aafff;box-shadow:0 0 0 3px #edf1ff}.add-form{display:flex;gap:8px;margin-top:12px}.primary{background:var(--accent);color:#fff;border-radius:10px;padding:10px 14px;font-weight:600;white-space:nowrap}.list{display:grid;gap:8px}.item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f0f1f5}.item:last-child{border:0}.item label{flex:1;min-width:0}.item.done label{text-decoration:line-through;color:#9aa1b1}.item input{accent-color:var(--accent)}.delete{background:transparent;color:#a2a9b7;font-size:18px;padding:0 5px}.progress{height:7px;background:#eef0f5;border-radius:10px;overflow:hidden;margin-top:13px}.progress span{display:block;height:100%;width:0;background:var(--accent);border-radius:10px;transition:width .2s}.habit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.habit{border:1px solid var(--line);border-radius:12px;padding:11px;display:flex;gap:9px;align-items:center;font-size:13px}.habit input{accent-color:var(--green)}.timer{text-align:center;padding:8px 0 3px}.timer-display{font-size:48px;font-weight:750;letter-spacing:-2px;font-variant-numeric:tabular-nums}.timer-controls{display:flex;justify-content:center;gap:8px;margin-top:12px}.timer-controls button{min-width:76px}.notes{min-height:120px;resize:vertical}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{padding:13px;background:#fafbfe;border:1px solid var(--line);border-radius:13px}.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{font-size:21px;display:block;margin-top:4px}.event{padding:10px 0;border-bottom:1px solid #f0f1f5}.event:last-child{border:0}.event strong{display:block;font-size:13px}.event small{color:var(--muted)}footer{text-align:center;color:#9aa1b1;font-size:11px;margin-top:26px}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.span-8,.span-7,.span-6,.span-5,.span-4{grid-column:span 12}.app{padding:20px 14px 36px}.welcome{padding:22px}.card{padding:17px}}
+@media(max-width:420px){.brand p{display:none}.header-actions .btn-label{display:none}.habit-grid{grid-template-columns:1fr}.add-form{flex-wrap:wrap}.add-form .field{min-width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><div class="logo">M</div><div><h1>My Dashboard</h1><p>Your space. Your pace.</p></div></div>
+  <div class="header-actions"><button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">◐</button><button class="icon-btn" id="resetBtn" title="Clear saved dashboard data">↺ <span class="btn-label">Reset</span></button></div>
+</header>
+<section class="hero">
+  <div class="welcome">
+    <div class="eyebrow">A fresh start</div><h2 id="greeting">Good morning.</h2>
+    <p>Make today count, one small step at a time.</p>
+    <div class="quote" id="quote">“Small steps every day lead to big changes.”</div>
+  </div>
+  <div class="time-card"><div class="time-label">Your local time</div><div class="clock" id="clock">--:--:--</div><div class="date" id="date">Loading date…</div></div>
+</section>
+<section class="grid">
+  <article class="card span-7">
+    <div class="card-head"><h3>Today's priorities</h3><span class="pill" id="taskCount">0 completed</span></div>
+    <div class="list" id="taskList"></div>
+    <form class="add-form" id="taskForm"><input class="field" id="taskInput" placeholder="Add a task…" maxlength="100" required><button class="primary">Add task</button></form>
+    <div class="progress"><span id="taskProgress"></span></div>
+  </article>
+  <article class="card span-5">
+    <div class="card-head"><h3>Daily habits</h3><span class="muted">Check in today</span></div>
+    <div class="habit-grid" id="habitGrid"></div>
+    <div class="muted" style="margin-top:12px" id="habitCount">0 of 4 completed</div>
+  </article>
+  <article class="card span-4">
+    <div class="card-head"><h3>Focus timer</h3><span class="pill">25 / 5</span></div>
+    <div class="timer"><div class="timer-display" id="timerDisplay">25:00</div><div class="muted" id="timerStatus">Ready for a focus session</div><div class="timer-controls"><button class="primary" id="timerStart">Start</button><button class="secondary" id="timerReset">Reset</button></div></div>
+  </article>
+  <article class="card span-4">
+    <div class="card-head"><h3>Quick notes</h3><span class="muted">Saved on this device</span></div>
+    <textarea class="field notes" id="notes" placeholder="Write down an idea, reminder or thought…"></textarea><div class="muted" id="noteStatus" style="margin-top:7px">Your notes save automatically.</div>
+  </article>
+  <article class="card span-4">
+    <div class="card-head"><h3>My savings goal</h3><span class="muted">Optional tracker</span></div>
+    <div class="stats"><div class="stat"><small>Saved so far (₹)</small><strong id="savedValue">₹0</strong></div><div class="stat"><small>Target (₹)</small><strong id="targetValue">₹10,000</strong></div></div>
+    <div class="progress"><span id="savingsProgress"></span></div>
+    <form id="savingsForm" class="add-form"><input class="field" id="savedInput" type="number" min="0" placeholder="Amount saved"><button class="primary">Update</button></form>
+    <button class="secondary" id="targetEdit" style="margin-top:8px;width:100%">Change target</button>
+  </article>
+  <article class="card span-6">
+    <div class="card-head"><h3>Important dates</h3><span class="muted">Your countdowns</span></div>
+    <div id="eventList"></div>
+    <form class="add-form" id="eventForm"><input class="field" id="eventName" placeholder="Event name" maxlength="50" required><input class="field" id="eventDate" type="date" required><button class="primary">Add</button></form>
+  </article>
+  <article class="card span-6">
+    <div class="card-head"><h3>A little reminder</h3><span class="pill">Keep going</span></div>
+    <p style="font-size:17px;line-height:1.7;margin:5px 0 12px">You don't need to have everything figured out. Focus on what you can do today.</p>
+    <div class="muted">Tip: Choose three meaningful priorities each morning, then give them your attention.</div>
+  </article>
+</section>
+<footer>Made for your everyday progress · Data is stored locally in this browser</footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const KEY='my-life-dashboard-v1';
+const today=()=>new Date().toISOString().slice(0,10);
+const defaults={tasks:[],habits:['Read','Learn something','Move your body','Plan tomorrow'],habitChecks:{},notes:'',saved:0,target:10000,events:[],dark:false};
+let data={...defaults};
+try{data={...defaults,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function updateClock(){const d=new Date();$('clock').textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});$('date').textContent=d.toLocaleDateString([], {weekday:'long',year:'numeric',month:'long',day:'numeric'});const h=d.getHours();$('greeting').textContent=(h<12?'Good morning':h<17?'Good afternoon':'Good evening')+'.'}
+setInterval(updateClock,1000);updateClock();
+const quotes=['“Small steps every day lead to big changes.”','“Progress, not perfection.”','“Start where you are. Use what you have. Do what you can.”','“Consistency turns effort into progress.”'];
+$('quote').textContent=quotes[new Date().getDate()%quotes.length];
+function renderTasks(){const list=$('taskList');list.innerHTML='';data.tasks.forEach((t,i)=>{const div=document.createElement('div');div.className='item'+(t.done?' done':'');div.innerHTML=`<input type="checkbox" ${t.done?'checked':''} aria-label="Complete task"><label>${escapeHTML(t.text)}</label><button class="delete" aria-label="Delete task">×</button>`;div.querySelector('input').onchange=e=>{data.tasks[i].done=e.target.checked;save();renderTasks()};div.querySelector('button').onclick=()=>{data.tasks.splice(i,1);save();renderTasks()};list.append(div)});const done=data.tasks.filter(t=>t.done).length;$('taskCount').textContent=`${done} completed`;$('taskProgress').style.width=(data.tasks.length?done/data.tasks.length*100:0)+'%'}
+$('taskForm').onsubmit=e=>{e.preventDefault();const v=$('taskInput').value.trim();if(v){data.tasks.push({text:v,done:false});$('taskInput').value='';save();renderTasks()}};
+function renderHabits(){const checks=data.habitChecks[today()]||[];$('habitGrid').innerHTML='';data.habits.forEach((h,i)=>{const label=document.createElement('label');label.className='habit';label.innerHTML=`<input type="checkbox" ${checks.includes(i)?'checked':''}> <span>${escapeHTML(h)}</span>`;label.querySelector('input').onchange=e=>{let c=data.habitChecks[today()]||[];data.habitChecks[today()]=e.target.checked?[...c,i]:c.filter(x=>x!==i);save();renderHabits()};$('habitGrid').append(label)});$('habitCount').textContent=`${checks.length} of ${data.habits.length} completed`}
+$('notes').value=data.notes;$('notes').oninput=()=>{data.notes=$('notes').value;save();$('noteStatus').textContent='Saved just now'};
+function renderSavings(){$('savedValue').textContent='₹'+Number(data.saved||0).toLocaleString('en-IN');$('targetValue').textContent='₹'+Number(data.target||0).toLocaleString('en-IN');$('savingsProgress').style.width=Math.min(100,(data.saved/Math.max(1,data.target))*100)+'%'}
+$('savingsForm').onsubmit=e=>{e.preventDefault();data.saved=Math.max(0,Number($('savedInput').value)||0);save();renderSavings();$('savedInput').value=''};
+$('targetEdit').onclick=()=>{const n=prompt('Enter your savings target in ₹',data.target);if(n!==null&&Number(n)>0){data.target=Number(n);save();renderSavings()}};
+function renderEvents(){const box=$('eventList');box.innerHTML='';if(!data.events.length){box.innerHTML='<div class="muted">No dates added yet. Add a birthday, exam or personal milestone.</div>';return}data.events.sort((a,b)=>a.date.localeCompare(b.date)).forEach((ev,i)=>{const days=Math.ceil((new Date(ev.date+'T00:00:00')-new Date(today()+'T00:00:00'))/86400000);const div=document.createElement('div');div.className='event';div.innerHTML=`<strong>${escapeHTML(ev.name)}</strong><small>${escapeHTML(ev.date)} · ${days<0?Math.abs(days)+' days ago':days===0?'Today':days+' days to go'}</small> <button class="delete" aria-label="Delete date" style="float:right">×</button>`;div.querySelector('button').onclick=()=>{data.events.splice(i,1);save();renderEvents()};box.append(div)})}
+$('eventForm').onsubmit=e=>{e.preventDefault();data.events.push({name:$('eventName').value.trim(),date:$('eventDate').value});save();$('eventName').value='';$('eventDate').value='';renderEvents()};
+let remaining=25*60,interval=null,focus=true;
+function showTimer(){$('timerDisplay').textContent=String(Math.floor(remaining/60)).padStart(2,'0')+':'+String(remaining%60).padStart(2,'0')}
+$('timerStart').onclick=()=>{if(interval){clearInterval(interval);interval=null;$('timerStart').textContent='Resume';return} $('timerStart').textContent='Pause';$('timerStatus').textContent=focus?'Focus session in progress':'Break time';interval=setInterval(()=>{remaining--;showTimer();if(remaining<=0){clearInterval(interval);interval=null;focus=!focus;remaining=(focus?25:5)*60;$('timerStart').textContent='Start';$('timerStatus').textContent=focus?'Focus session complete. Ready again?':'Focus complete. Take a short break.';showTimer()}},1000)};
+$('timerReset').onclick=()=>{clearInterval(interval);interval=null;focus=true;remaining=25*60;$('timerStart').textContent='Start';$('timerStatus').textContent='Ready for a focus session';showTimer()};
+function applyTheme(){document.body.style.setProperty('--bg',data.dark?'#171b27':'#f6f7fb');document.body.style.setProperty('--surface',data.dark?'#222838':'#fff');document.body.style.setProperty('--text',data.dark?'#edf0f7':'#202536');document.body.style.setProperty('--muted',data.dark?'#a8b0c2':'#778096');document.body.style.setProperty('--line',data.dark?'#343d51':'#e9ecf3');document.body.style.setProperty('--accent-soft',data.dark?'#303b60':'#edf1ff');document.body.style.setProperty('--shadow',data.dark?'0 8px 28px rgba(0,0,0,.12)':'0 8px 28px rgba(31,45,80,.055)');document.querySelectorAll('.quote,.stat').forEach(el=>el.style.background=data.dark?'#2a3245':'');$('themeBtn').textContent=data.dark?'☀':'◐'}
+$('themeBtn').onclick=()=>{data.dark=!data.dark;save();applyTheme()};
+$('resetBtn').onclick=()=>{if(confirm('Clear all dashboard data saved in this browser?')){data={...defaults};save();location.reload()}};
+renderTasks();renderHabits();renderSavings();renderEvents();showTimer();applyTheme();
+</script>
+</body>
+</html>
